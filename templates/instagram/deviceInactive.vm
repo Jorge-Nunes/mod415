@@ -1,0 +1,8 @@
+#set($lastUpdate = $dateTool.getDate())
+#set($ignore = $lastUpdate.setTime($event.getLong("lastUpdate")))
+
+Inativo
+Veículo: $device.name
+Data/Hora: $dateTool.format("YYYY-MM-dd HH:mm:ss", $lastUpdate, $locale, $timezone)
+#{if}($position.address)Endereço: $position.address#{end}
+#{if}($position.latitude)Localização: https://www.google.com/maps/@$position.latitude,$position.longitude,21z #{end}

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        logicalFilePath="changelog-mod-2022-011">
+  <changeSet author="author" id="changelog-mod-2022-011-01">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="tc_smss" />
+      </not>
+    </preConditions>
+    <createTable tableName="tc_smss">
+      <column name="id" type="INT" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="name" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="commands" type="TEXT" />
+      <column name="attributes" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+    </createTable>
+    <createTable tableName="tc_user_sms">
+      <column name="userid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="smsid" type="INT">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="tc_user_sms" baseColumnNames="userid" constraintName="fk_user_sms_userid" referencedTableName="tc_users" referencedColumnNames="id" onDelete="CASCADE" />
+    <createIndex tableName="tc_user_sms" indexName="user_sms_user_id">
+      <column name="userid" />
+    </createIndex>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-011-02">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="tc_smsqueues" />
+      </not>
+    </preConditions>
+    <createTable tableName="tc_smsqueues">
+      <column name="id" type="INT" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="command" type="TEXT">
+        <constraints nullable="false" />
+      </column>
+      <column name="status" type="VARCHAR(128)" defaultValue="A"/>
+      <column name="createdtime" type="TIMESTAMP" />
+      <column name="sendtime" type="TIMESTAMP" />
+      <column name="message" type="TEXT" />
+      <column name="attributes" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+    </createTable>
+    <createTable tableName="tc_user_smsqueue">
+      <column name="userid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="smsqueueid" type="INT">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="tc_user_smsqueue" baseColumnNames="userid" constraintName="fk_user_smsqueue_userid" referencedTableName="tc_smsqueues" referencedColumnNames="id" onDelete="CASCADE" />
+    <createIndex tableName="tc_user_smsqueue" indexName="user_smsqueue_user_id">
+      <column name="userid" />
+    </createIndex>
+  </changeSet>
+<!--   <changeSet author="author" id="changelog-mod-2022-011-03">
+    <preConditions onFail="MARK_RAN">
+      <columnExists tableName="tc_events" columnName="servertime"/>
+    </preConditions>
+    <addDefaultValue  
+            tableName="tc_events" 
+            columnName="servertime"
+            defaultValueComputed="CURRENT_TIMESTAMP"  />
+  </changeSet> -->
+  <changeSet author="author" id="changelog-mod-2022-011-04">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_users" columnName="cpf"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_users">
+      <column name="cpf" type="TEXT" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-011-05">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_users" columnName="recoverpwd"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_users">
+      <column name="recoverpwd" type="TEXT" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-011-06">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_devices" columnName="prefixo"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_devices">
+      <column name="prefixo" type="TEXT" />
+    </addColumn>
+  </changeSet>
+    <changeSet author="author" id="changelog-mod-2023-009-08">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_devices" columnName="photoInstall"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_devices">
+      <column name="photoInstall" type="TEXT" />
+    </addColumn>
+  </changeSet>
+</databaseChangeLog>

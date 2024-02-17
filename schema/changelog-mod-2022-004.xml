@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        logicalFilePath="changelog-mod-2022-004">
+
+
+  <changeSet author="author" id="changelog-mod-2022-004-01">
+
+  <preConditions onFail="MARK_RAN">
+        <tableExists tableName="tc_devices" />
+    </preConditions>
+    <addDefaultValue  tableName="tc_devices"  columnName="fuelconsumption"  defaultValue="1"/>
+  </changeSet>
+
+</databaseChangeLog>

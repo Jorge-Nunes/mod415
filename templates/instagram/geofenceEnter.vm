@@ -1,0 +1,6 @@
+Entrou na cerca virtual
+Veículo: $device.name
+Cerca: $geofence.name
+Data/Hora:  $dateTool.format("dd/MM/YYYY HH:mm:ss", $event.eventTime, $locale, $timezone)
+#{if}($position.address)Endereço: $position.address#{end}
+#{if}($position.latitude)Localização: https://www.google.com/maps/@$position.latitude,$position.longitude,21z #{end}

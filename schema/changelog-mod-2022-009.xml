@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        logicalFilePath="changelog-mod-2022-007">
+  <changeSet author="author" id="changelog-mod-2022-009-01">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="tc_installations" />
+      </not>
+    </preConditions>
+    <createTable tableName="tc_installations">
+      <column name="id" type="INT" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="deviceid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="userid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="local" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="dateinstall" type="TIMESTAMP" />
+      <column name="dateuninstall" type="TIMESTAMP" />
+      <column name="price" type="DOUBLE" defaultValueNumeric="0">
+        <constraints nullable="false" />
+      </column>
+      <column name="installed" type="BOOLEAN" defaultValueBoolean="false" />
+      <column name="description" type="VARCHAR(128)" />
+      <column name="attributes" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+    </createTable>
+
+    <createTable tableName="tc_user_installation">
+      <column name="userid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="installationid" type="INT">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint baseTableName="tc_user_installation" baseColumnNames="userid" constraintName="fk_user_installation_userid" referencedTableName="tc_users" referencedColumnNames="id" onDelete="CASCADE" />
+
+    <createIndex tableName="tc_user_installation" indexName="user_installation_user_id">
+      <column name="userid" />
+    </createIndex>
+
+  </changeSet>
+
+</databaseChangeLog>
+

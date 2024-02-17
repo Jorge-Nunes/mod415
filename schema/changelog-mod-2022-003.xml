@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        logicalFilePath="changelog-mod-2022-003">
+
+
+  <changeSet author="author" id="changelog-mod-2022-003-01">
+
+  <preConditions onFail="MARK_RAN">
+        <tableExists tableName="tc_revendas" />
+    </preConditions>
+    
+    <addDefaultValue  tableName="tc_revendas"  columnName="color1"  defaultValue="#333366"/>
+    <addDefaultValue  tableName="tc_revendas"  columnName="color2"  defaultValue="#4CAF50"/>
+    <addDefaultValue  tableName="tc_revendas"  columnName="color3"  defaultValue="#888888"/>
+    <addDefaultValue  tableName="tc_revendas"  columnName="color4"  defaultValue="#FFF"/>
+    <addDefaultValue  tableName="tc_revendas"  columnName="color5"  defaultValue="#000"/>
+    
+  </changeSet>
+
+</databaseChangeLog>

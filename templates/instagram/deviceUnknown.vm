@@ -1,0 +1,7 @@
+Posição desconhecida
+Veículo: $device.name
+Motivo: Possível área de sombreamento de sinal
+Data/Hora:  $dateTool.format("dd/MM/YYYY HH:mm:ss", $event.eventTime, $locale, $timezone)
+#{if}($position.address)Endereço: $position.address#{end}
+#{if}($position.latitude)Localização: https://www.google.com/maps/@$position.latitude,$position.longitude,21z #{end}
+Obs: Caso este alerta continue por mais de 24h, mesmo com o veículo esteja em movimento  favor comunicar o suporte técnico

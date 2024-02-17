@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        logicalFilePath="changelog-mod-2022-002">
+  <changeSet author="author" id="changelog-mod-2022-002-01">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="tc_plans" />
+      </not>
+    </preConditions>
+    <createTable tableName="tc_plans">
+      <column name="id" type="INT" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="name" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="type" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="price" type="DOUBLE" defaultValueNumeric="0">
+        <constraints nullable="false" />
+      </column>
+      <column name="attributes" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+    </createTable>
+
+    <createTable tableName="tc_user_plan">
+      <column name="userid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="planid" type="INT">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint baseTableName="tc_user_plan" baseColumnNames="userid" constraintName="fk_user_plan_userid" referencedTableName="tc_users" referencedColumnNames="id" onDelete="CASCADE" />
+
+    <createIndex tableName="tc_user_plan" indexName="user_plan_user_id">
+      <column name="userid" />
+    </createIndex>
+
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-002-02">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="tc_contracts" />
+      </not>
+    </preConditions>
+    <createTable tableName="tc_contracts">
+      <column name="id" type="INT" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="revendaid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="gatewayid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="groupid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="planid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="duedate" type="TIMESTAMP">
+        <constraints nullable="false" />
+      </column>
+      <column name="nextduedate" type="TIMESTAMP">
+        <constraints nullable="false" />
+      </column>
+      <column name="quantity" type="INT" defaultValueNumeric="1"/>
+      <column name="price" type="DOUBLE" defaultValueNumeric="0">
+        <constraints nullable="false" />
+      </column>
+      <column name="description" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="disabled" type="BOOLEAN" defaultValueBoolean="false">
+        <constraints nullable="false" />
+      </column>
+      <column name="attributes" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+    </createTable>
+
+    <createIndex tableName="tc_contracts" indexName="contracts_group_id">
+      <column name="groupid" />
+    </createIndex>
+
+
+    <createTable tableName="tc_user_contract">
+      <column name="userid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="contractid" type="INT">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint baseTableName="tc_user_contract" baseColumnNames="userid" constraintName="fk_user_contract_userid" referencedTableName="tc_users" referencedColumnNames="id" onDelete="CASCADE" />
+
+    <createIndex tableName="tc_user_contract" indexName="user_contract_user_id">
+      <column name="userid" />
+    </createIndex>
+
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-002-03">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="tc_invoices" />
+      </not>
+    </preConditions>
+    <createTable tableName="tc_invoices">
+      <column name="id" type="INT" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="contractid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="transaction" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="duedate" type="TIMESTAMP">
+        <constraints nullable="false" />
+      </column>
+      <column name="statusdate" type="TIMESTAMP">
+        <constraints nullable="false" />
+      </column>
+      <column name="quantity" type="INT" defaultValueNumeric="1"/>
+      <column name="price" type="DOUBLE" defaultValueNumeric="0">
+        <constraints nullable="false" />
+      </column>
+      <column name="paid" type="DOUBLE" defaultValueNumeric="0">
+        <constraints nullable="true" />
+      </column>
+      <column name="digitableline" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="urlslip" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+      <column name="urlpdf" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+      <column name="status" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="description" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="bankid" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="disabled" type="BOOLEAN" defaultValueBoolean="false">
+        <constraints nullable="false" />
+      </column>
+      <column name="attributes" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+    </createTable>
+
+    <createIndex tableName="tc_invoices" indexName="invoices_transaction_id">
+      <column name="transaction" />
+    </createIndex>
+
+    <createIndex tableName="tc_invoices" indexName="invoices_contract_id">
+      <column name="contractid" />
+    </createIndex>
+
+    <createTable tableName="tc_user_invoice">
+      <column name="userid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="invoiceid" type="INT">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint baseTableName="tc_user_invoice" baseColumnNames="userid" constraintName="fk_user_invoice_userid" referencedTableName="tc_users" referencedColumnNames="id" onDelete="CASCADE" />
+
+    <createIndex tableName="tc_user_invoice" indexName="user_invoice_user_id">
+      <column name="userid" />
+    </createIndex>
+  </changeSet>
+
+  <changeSet author="author" id="changelog-mod-2022-002-04">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_groups" columnName="contractid"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_groups">
+      <column name="contractid" type="INT">
+        <constraints nullable="true" />
+      </column>
+    </addColumn>
+  </changeSet>
+
+  <changeSet author="author" id="changelog-mod-2022-002-05">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="tc_billings" />
+      </not>
+    </preConditions>
+    <createTable tableName="tc_billings">
+      <column name="id" type="INT" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="name" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="type" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="apikey" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="token" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="description" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="attributes" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+    </createTable>
+
+    <createTable tableName="tc_user_billing">
+      <column name="userid" type="INT">
+        <constraints nullable="false" />
+      </column>
+      <column name="billingid" type="INT">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+
+    <addForeignKeyConstraint baseTableName="tc_user_billing" baseColumnNames="userid" constraintName="fk_user_billing_userid" referencedTableName="tc_users" referencedColumnNames="id" onDelete="CASCADE" />
+
+    <createIndex tableName="tc_user_billing" indexName="user_billing_user_id">
+      <column name="userid" />
+    </createIndex>
+
+  </changeSet>
+
+  <changeSet author="author" id="changelog-mod-2022-002-06">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_groups" columnName="number"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_groups">
+      <column name="number" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="complement" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+    </addColumn>
+  </changeSet>
+
+</databaseChangeLog>

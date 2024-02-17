@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd"
+        logicalFilePath="changelog-mod-2022-001">
+  <changeSet author="author" id="changelog-mod-2022-001-01">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_drivers" columnName="photo"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_drivers">
+      <column name="photo" type="VARCHAR(128)" defaultValue=""/>
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="file01" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="file02" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="file03" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="phone" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="contact" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="email" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="address" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="neighborhood" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="city" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="state" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="postalcode" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_drivers">
+      <column name="bloodtype" type="VARCHAR(128)" />
+    </addColumn>
+  </changeSet>
+
+  
+  <changeSet author="author" id="changelog-mod-2022-001-03">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_groups" columnName="duedate"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_groups">
+      <column name="duedate" type="VARCHAR(10)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-04">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_groups" columnName="photo"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_groups">
+      <column name="photo" type="VARCHAR(128)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-05">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_devices" columnName="photo"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_devices">
+      <column name="photo" type="TEXT" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="color" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="march" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="dateuninstall" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="techphone" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="equipmodel" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="localInstall" type="VARCHAR(128)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-06">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_devices" columnName="equipmodel"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_devices">
+      <column name="color" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="march" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="techphone" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="equipmodel" type="VARCHAR(128)" />
+    </addColumn>
+  </changeSet>
+<!--   <changeSet author="author" id="changelog-mod-2022-001-07">
+    <preConditions onFail="MARK_RAN">
+      <columnExists tableName="tc_devices" columnName="localInstall"/>
+    </preConditions>
+    <renameColumn tableName="tc_devices" columnDataType="TEXT" oldColumnName="  " newColumnName=" " />
+  </changeSet> -->
+  <changeSet author="author" id="changelog-mod-2022-001-08">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_events" columnName="userid"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_events">
+      <column name="userid" type="INT" />
+    </addColumn>
+    <addColumn tableName="tc_events">
+      <column name="comment" type="TEXT" />
+    </addColumn>
+    <addColumn tableName="tc_events">
+      <column name="response" type="TEXT" />
+    </addColumn>
+    <addColumn tableName="tc_events">
+      <column name="lastupdate" type="TIMESTAMP" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-09">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_groups" columnName="designation"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_groups">
+      <column name="designation" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="billing" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="code" type="VARCHAR(128)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-10">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_groups" columnName="duedate"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_users">
+      <column name="duedate" type="VARCHAR(10)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-11">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_users" columnName="groupid"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_users">
+      <column name="groupid" type="INT" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-12">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_devices" columnName="fuelconsumption"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_devices">
+      <column name="fuelconsumption" type="INT" defaultValueNumeric="0" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-13">
+    <preConditions onFail="MARK_RAN">
+      <tableExists tableName="tc_revendas" />
+    </preConditions>
+    <addColumn tableName="tc_revendas">
+      <column name="document" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="address" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="neighborhood" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="city" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="state" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="postalcode" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="gnkey" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="gntoken" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="mpagokey" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="mpagotoken" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="paypalkey" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="paypaltoken" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="background" type="TEXT" />
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="duedate" type="VARCHAR(10)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-14">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="tc_revendas" />
+      </not>
+    </preConditions>
+    <createTable tableName="tc_revendas">
+      <column name="id" type="INT" autoIncrement="true">
+        <constraints primaryKey="true" />
+      </column>
+      <column name="code" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="title" type="VARCHAR(128)">
+        <constraints nullable="false" />
+      </column>
+      <column name="url" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="document" type="VARCHAR(128)" >
+        <constraints nullable="true" />
+      </column>
+      <column name="address" type="VARCHAR(128)" >
+        <constraints nullable="true" />
+      </column>
+      <column name="neighborhood" type="VARCHAR(128)" >
+        <constraints nullable="true" />
+      </column>
+      <column name="city" type="VARCHAR(128)" >
+        <constraints nullable="true" />
+      </column>
+      <column name="state" type="VARCHAR(128)" >
+        <constraints nullable="true" />
+      </column>
+      <column name="postalcode" type="VARCHAR(128)" >
+        <constraints nullable="true" />
+      </column>
+      <column name="email" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="phone" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="facebook" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="twitter" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="instagram" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="whatsapp" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="invoices" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="color1" type="VARCHAR(128)" defaultValue="#333366">
+        <constraints nullable="true" />
+      </column>
+      <column name="color2" type="VARCHAR(128)" defaultValue="#4CAF50">
+        <constraints nullable="true" />
+      </column>
+      <column name="googlekey" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="googleplay" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="applestore" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="template" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="asaastoken" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="paghipertoken" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="paghiperkey" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="gerencianetkey" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="gerencianettoken" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="mercadopagokey" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="mercadopagotoken" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="paypalkey" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="paypaltoken" type="VARCHAR(128)">
+        <constraints nullable="true" />
+      </column>
+      <column name="logo" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+      <column name="background" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+      <column name="duedate" type="VARCHAR(10)">
+        <constraints nullable="true" />
+      </column>
+      <column name="attributes" type="TEXT">
+        <constraints nullable="true" />
+      </column>
+    </createTable>
+    <modifyDataType tableName="tc_devices" columnName="attributes" newDataType="TEXT" />
+    <modifyDataType tableName="tc_users" columnName="attributes" newDataType="TEXT" />
+    <modifyDataType tableName="tc_drivers" columnName="attributes" newDataType="TEXT" />
+    <modifyDataType tableName="tc_positions" columnName="attributes" newDataType="TEXT" />
+    <modifyDataType tableName="tc_events" columnName="attributes" newDataType="TEXT" />
+    <insert tableName="tc_revendas">
+      <column name="code" value="traccar" />
+      <column name="title" value="Traccar" />
+      <column name="url" value="https://www.traccar.org/" />
+      <column name="email" value="support@traccar.org" />
+      <column name="facebook" value="https://www.facebook.com/traccar" />
+      <column name="twitter" value="https://twitter.com/TraccarOrg" />
+      <column name="color1" value="#333366" />
+      <column name="color2" value="#4CAF50" />
+      <column name="googleplay" value="https://play.google.com/store/apps/details?id=org.traccar.manager" />
+      <column name="applestore" value="https://itunes.apple.com/us/app/traccar-manager/id1113966562" />
+      <column name="template" value="default" />
+      <column name="logo" value="logo.png" />
+      <column name="background" value="background.png" />
+      <column name="attributes" value="{}" />
+    </insert>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-15">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_users" columnName="telegram"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_users">
+      <column name="telegram" type="VARCHAR(30)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-16">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_users" columnName="whatsapp"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_users">
+      <column name="whatsapp" type="VARCHAR(30)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-17">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_revendas" columnName="color3"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_revendas">
+      <column name="color3" type="VARCHAR(128)" defaultValue="#CC2222"/>
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="color4" type="VARCHAR(128)" defaultValue="#FFFFFF"/>
+    </addColumn>
+    <addColumn tableName="tc_revendas">
+      <column name="color5" type="VARCHAR(128)" defaultValue="#888888"/>
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-18">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_drivers" columnName="document"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_drivers">
+      <column name="document" type="VARCHAR(128)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-19">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_drivers" columnName="documentvalidat"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_drivers">
+      <column name="documentvalidat" type="VARCHAR(10)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-20">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_devices" columnName="icc"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_devices">
+      <column name="icc" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="vendor" type="VARCHAR(128)" />
+    </addColumn>
+    <addColumn tableName="tc_devices">
+      <column name="operator" type="VARCHAR(128)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-21">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_users" columnName="photo"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_users">
+      <column name="photo" type="TEXT" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-22">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_groups" columnName="document"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_groups">
+      <column name="document" type="VARCHAR(30)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="address" type="VARCHAR(80)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="neighborhood" type="VARCHAR(80)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="city" type="VARCHAR(80)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="state" type="VARCHAR(10)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="country" type="VARCHAR(80)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="postalcode" type="VARCHAR(30)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="email" type="VARCHAR(120)" />
+    </addColumn>
+    <addColumn tableName="tc_groups">
+      <column name="phone" type="VARCHAR(30)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-23">
+    <preConditions onFail="MARK_RAN">
+      <sqlCheck expectedResult="0">
+        SELECT COUNT(*) FROM tc_users WHERE email = 'suporte@2ecomp.com.br'
+      </sqlCheck>
+    </preConditions>
+    <insert tableName="tc_users">
+      <column name="name" value="Suporte Central de Rastreamento" />
+      <column name="email" value="suporte@2ecomp.com.br" />
+      <column name="login" value="suporte" />
+      <column name="hashedpassword" value="D33DCA55ABD4CC5BC76F2BC0B4E603FE2C6F61F4C1EF2D47" />
+      <column name="salt" value="000000000000000000000000000000000000000000000000" />
+      <column name="administrator" valueBoolean="true" />
+    </insert>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-24">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_devices" columnName="dateuninstall"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_devices">
+      <column name="dateuninstall" type="VARCHAR(128)" />
+    </addColumn>
+  </changeSet>
+  <changeSet author="author" id="changelog-mod-2022-001-25">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <columnExists tableName="tc_drivers" columnName="documentcategory"/>
+      </not>
+    </preConditions>
+    <addColumn tableName="tc_drivers">
+      <column name="documentcategory" type="VARCHAR(10)" />
+    </addColumn>
+  </changeSet>
+</databaseChangeLog>

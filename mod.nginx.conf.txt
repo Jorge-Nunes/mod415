@@ -1,0 +1,54 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name acesso.protectonraster.com.br;
+    set $root_path "/var/www/html";
+
+    root $root_path;
+
+    index index.html index.php;
+
+    location /api/socket {
+       include proxy_params;
+       proxy_http_version 1.1;
+       proxy_cache_bypass $http_upgrade;
+       proxy_buffering off;
+       proxy_set_header Host $host;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection "Upgrade";
+       proxy_pass http://localhost:8082/api/socket;
+
+    }
+
+    location / {
+       proxy_set_header X-Forwarded-Host $host:$server_port;
+       proxy_set_header X-Forwarded-Server $host;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+       proxy_pass http://localhost:8082/;
+    }
+    
+    location ~ /.well-known {
+       #this need for let's enctypt certificate otherwise i receve "not valid" for my domain when let's encrypt generate certificate
+       allow all;
+       root /var/www/html;
+    }
+
+
+}
+
+
+apt -y update
+apt list --upgradable
+apt -y upgrade
+
+apt install python3-pip -y
+pip3 install setuptools-rust -y
+pip3 install certbot -y
+dpkg-reconfigure tzdata
+pip3 show certbot
+
+pkill -9 nginx
+nginx -c /etc/nginx/nginx.conf
+nginx -s reload
